@@ -40,11 +40,10 @@ class Database
 		$database = array();
 		require 'includes/config.php';
 		//Connect
-		- PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET utf8mb4, NAMES utf8mb4, sql_mode = 'STRICT_ALL_TABLES'"
-			+ PDO::MYSQL_ATTR_INIT_COMMAND => "
-			+   SET NAMES utf8mb4;
-			+   SET sql_mode = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-		+ "
+			PDO::MYSQL_ATTR_INIT_COMMAND => "
+			SET NAMES utf8mb4;
+			SET sql_mode = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+		 "
 		//error behaviour
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
