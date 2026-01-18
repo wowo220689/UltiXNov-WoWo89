@@ -1,19 +1,10 @@
 <?php
 /**
-*  ultimateXnova
-*  based on 2moons by Jan-Otto Kröpke 2009-2016
+*  ultimateXnova mod by WoWo89
+*  based on 2moons by Jan-Otto Kröpke 2009-2016 mod by WoWo89 2026
  *
  * For the full copyright and license information, please view the LICENSE
  *
- * @package ultimateXnova
- * @author Jan-Otto Kröpke <slaver7@gmail.com>
- * @copyright 2009 Lucky
- * @copyright 2016 Jan-Otto Kröpke <slaver7@gmail.com>
- * @copyright 2022 Koray Karakuş <koraykarakus@yahoo.com>
- * @copyright 2024 Pfahli (https://github.com/Pfahli)
- * @licence MIT
- * @version 1.8.x Koray Karakuş <koraykarakus@yahoo.com>
- * @link https://github.com/ultimateXnova/ultimateXnova
  */
 
 class Database
@@ -49,9 +40,11 @@ class Database
 		$database = array();
 		require 'includes/config.php';
 		//Connect
-		$db = new PDO("mysql:host=".$database['host'].";port=".$database['port'].";dbname=".$database['databasename'], $database['user'], $database['userpw'], array(
-		    PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET utf8mb4, NAMES utf8mb4, sql_mode = 'STRICT_ALL_TABLES'"
-		));
+		- PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET utf8mb4, NAMES utf8mb4, sql_mode = 'STRICT_ALL_TABLES'"
+			+ PDO::MYSQL_ATTR_INIT_COMMAND => "
+			+   SET NAMES utf8mb4;
+			+   SET sql_mode = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+		+ "
 		//error behaviour
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
